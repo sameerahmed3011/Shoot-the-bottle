@@ -1,0 +1,838 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+
+
+namespace ConsoleApplication24
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {   
+          int y = 4;
+          int x = 5;
+          int y1 = 1;
+          int x1 = 1; 
+          int y2 = 1;
+          int x2 = 1;
+          int x3 = 1;
+          int y3 = 1;
+          int x4 = 1;
+          int y4 = 1;
+          int x6 = 1;
+          int y6 = 1;
+          int x5 = 1;
+          int y5 = 1;
+          int totalscore = 0;
+          int xcross = 32;
+          int ycross = 12;
+          int BULLETS = 6;
+            
+          //Animation.
+          Console.ForegroundColor = ConsoleColor.Green;
+          Console.WriteLine("\n" + "\n");
+          Console.WriteLine("        =================================================================");
+          Console.WriteLine("                      _   _   _   _     _   _   _   _   _ ");
+          Console.WriteLine("                     / \\ / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\");
+          Console.WriteLine("                    ( G | A | M | E ) ( S | T | A | R | T )");
+          Console.WriteLine("                     \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/");
+          Console.WriteLine("        =================================================================");
+          Console.ResetColor();
+          Console.ForegroundColor = ConsoleColor.Cyan;
+          Console.WriteLine("        =================================================================");
+          Console.WriteLine("             _   _   _   _   _     _   _   _     _   _   _   _   _   _");
+          Console.WriteLine("            / \\ / \\ / \\ / \\ / \\   / \\ / \\ / \\   / \\ / \\ / \\ / \\ / \\ / \\");
+          Console.WriteLine("           ( S | H | O | O | T ) ( T | H | E ) ( B | O | T | T | L | E ) ");
+          Console.WriteLine("            \\_/ \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ \\_/ \\_/ \\_/" + "\n");
+          Console.WriteLine("        =================================================================");
+          Console.ResetColor();
+          Thread.Sleep(100);
+          Console.ForegroundColor = ConsoleColor.Red;
+          Console.WriteLine("                        PRESS ENTER TO START THE GAME");
+          Console.ResetColor();
+          Console.ReadLine();
+         
+          Console.Clear();
+          //first bottle
+           while(x5<68)
+          {
+           for (int i = 0; i < 68; i+=18)
+           {      
+             x5 += 1;
+             Console.ForegroundColor = ConsoleColor.DarkCyan;
+             Console.Clear();
+             Console.SetCursorPosition(x5, 3);
+             Console.Write("  ___  ");
+             Console.SetCursorPosition(x5, 4);
+             Console.Write("  :-:  ");
+             Console.SetCursorPosition(x5, 5);
+             Console.Write("  : :  ");
+             Console.SetCursorPosition(x5, 6);
+             Console.Write("  : :  ");
+             Console.SetCursorPosition(x5, 7);
+             Console.Write(".'   '.");
+             Console.SetCursorPosition(x5, 8);
+             Console.Write(":_____:");
+             Console.SetCursorPosition(x5, 9);
+             Console.Write("|     |");
+             Console.SetCursorPosition(x5, 10);
+             Console.Write("|     |");
+             Console.SetCursorPosition(x5, 11);
+             Console.Write("|_____|");
+             Console.SetCursorPosition(x5, 12);
+             Console.Write(":_____:");
+             Console.ResetColor();
+        
+              }
+               //Cross Target
+          Console.ForegroundColor = ConsoleColor.Cyan;
+          Console.SetCursorPosition(xcross + 2, ycross);
+          Console.WriteLine("   _");
+          Console.SetCursorPosition(xcross + 2, ycross + 1);
+          Console.WriteLine(" _| |_");
+          Console.SetCursorPosition(xcross + 2, ycross + 2);
+          Console.WriteLine("|_   _|");
+          Console.SetCursorPosition(xcross + 2, ycross + 3);
+          Console.WriteLine("  |_|");
+          Console.SetCursorPosition(xcross + 5, ycross + 4);
+          Console.ResetColor();
+               //Arrow keys 
+          string move1 = Console.ReadLine();
+          if (move1 == "a")
+          {
+              xcross -= 6;
+          }
+          if (move1 == "d")
+          {
+              xcross += 6;
+          }
+          if (move1 == "w")
+          {
+              ycross -= 6;
+          }
+          if (move1 == "s")
+          {
+              ycross += 6;
+          }
+          Console.Clear();
+               //Collision Detection.
+          if (x5 < xcross + 9 && (x5 + 9) > xcross && y5 < ycross && y5 < ycross + 9 )
+          {   //shoot input.
+           Console.WriteLine("\n\n\n\n \t\t\t\t "+"PRESS" + " X" + " TO SHOOT");
+           string fire = Console.ReadLine();
+          
+           if (fire == "x" || fire == "X")
+           {
+               Console.Clear();
+               Console.ForegroundColor = ConsoleColor.Red;
+               Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "                YOU GOT HIT " + "  ");
+               Console.ResetColor();
+              
+                   //burst animation
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "            __ __ __ ___ . _                             ");
+            Console.WriteLine("                           | |          |    \\             _     ");
+            Console.WriteLine("                           | |          |      -- -- -- --| |            ");
+            Console.WriteLine("                           | |          |      -- -- -- --|_|             ");
+            Console.WriteLine("                           |_| __ __ ___|. _ /                            ");
+            Console.ResetColor();
+             }
+             Console.ForegroundColor = ConsoleColor.Cyan;
+              BULLETS -= 1;
+              Console.WriteLine("                                                              Total BULLETS: "+ BULLETS);
+              if (BULLETS == 0)
+              {
+                  Console.ForegroundColor = ConsoleColor.Cyan;
+                  Console.WriteLine("\t\t\t\t PRESS R TO RELOAD");
+                  string R = Console.ReadLine();
+                  if (R == "R" || R == "r")
+                  {
+                      BULLETS += 6;
+                  }
+
+              }
+              Console.ResetColor();
+              totalscore += 1;
+              Console.ReadLine();
+              
+              break;
+             }
+              
+            }//2nd Bottle.
+           Console.Clear();
+            while(x4 <68)
+            {
+            for (int j = 0; j < 68; j += 22)
+                {
+                    x4 += 1;
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.SetCursorPosition(x4, 13);
+                    Console.WriteLine("     _[-]_   ");
+                    Console.SetCursorPosition(x4, 14);
+                    Console.WriteLine("    /_   _\\  ");
+                    Console.SetCursorPosition(x4, 15);
+                    Console.WriteLine("    )_``'_(  ");
+                    Console.SetCursorPosition(x4, 16);
+                    Console.WriteLine("    |;:   |  ");
+                    Console.SetCursorPosition(x4, 17);
+                    Console.WriteLine("    |;:   |  ");
+                    Console.SetCursorPosition(x4, 18);
+                    Console.WriteLine("    |;:.._|  ");
+                    Console.SetCursorPosition(x4, 19);
+                    Console.WriteLine("    `-...-'  ");
+                    Console.ResetColor();
+                }
+                    //Cross Target.
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.SetCursorPosition(xcross + 2, ycross);
+                    Console.WriteLine("   _");
+                    Console.SetCursorPosition(xcross + 2, ycross + 1);
+                    Console.WriteLine(" _| |_");
+                    Console.SetCursorPosition(xcross + 2, ycross + 2);
+                    Console.WriteLine("|_   _|");
+                    Console.SetCursorPosition(xcross + 2, ycross + 3);
+                    Console.WriteLine("  |_|");
+                    Console.SetCursorPosition(xcross + 5, ycross + 4);
+
+
+                    Console.ResetColor();
+                //moves
+                    string move1 = Console.ReadLine();
+                    if (move1 == "a")
+                    {
+                        xcross -= 6;
+                    }
+                    if (move1 == "d")
+                    {
+                        xcross += 6;
+                    }
+                    if (move1 == "w")
+                    {
+                    
+                        ycross -= 6;
+                    }
+                    if (move1 == "s")
+                    {
+                        ycross += 6;
+                    }
+
+                
+                    Console.Clear();
+                //Collision Detection
+                    if (x4 < xcross + 9 && (x4 + 9) > xcross && y4 < ycross && y4 < ycross + 9)
+                    {
+                        Console.WriteLine("\n\n\n\n \t\t\t\t " + "PRESS" + " X" + " TO SHOOT");
+                        string fire = Console.ReadLine();
+                        //shoot input
+                        if (fire == "x" || fire == "X")
+                        {
+                            Console.Clear();
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "                YOU GOT HIT " + "  ");
+                            Console.ResetColor();
+                            Console.ForegroundColor = ConsoleColor.White;
+                            Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "            __ __ __ ___ . _                             ");
+                            Console.WriteLine("                           | |          |    \\             _     ");
+                            Console.WriteLine("                           | |          |      -- -- -- --| |            ");
+                            Console.WriteLine("                           | |          |      -- -- -- --|_|             ");
+                            Console.WriteLine("                           |_| __ __ ___|. _ /                            ");
+                            Console.ResetColor();
+                        }
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        BULLETS -= 1;
+                        Console.WriteLine("                                                              Total BULLETS: " + BULLETS);
+                        if (BULLETS == 0)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.WriteLine("\t\t\t\t PRESS R TO RELOAD");
+                            string R = Console.ReadLine();
+                            if (R == "R" || R == "r")
+                            {
+                                BULLETS += 6;
+                            }
+
+                        }
+                        totalscore += 1;
+                        Console.ResetColor();
+                        Console.ReadLine();
+                        break;
+                    }
+            }
+            while (x3 < 68)
+            {
+                for (int i = 0; i < 68; i += 18)
+                {
+                    x3 += 1;
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.SetCursorPosition(x3, 5);
+                    Console.WriteLine("     __");
+                    Console.SetCursorPosition(x3, 6);
+                    Console.WriteLine("    |==|");
+                    Console.SetCursorPosition(x3, 7);
+                    Console.WriteLine("    |  |");
+                    Console.SetCursorPosition(x3, 8);
+                    Console.WriteLine("    |  |");
+                    Console.SetCursorPosition(x3, 9);
+                    Console.WriteLine("   /    \\");
+                    Console.SetCursorPosition(x3, 10);
+                    Console.WriteLine("  /      \\");
+                    Console.SetCursorPosition(x3, 11);
+                    Console.WriteLine(" .        .");
+                    Console.SetCursorPosition(x3, 12);
+                    Console.WriteLine("|----------|");
+                    Console.SetCursorPosition(x3, 13);
+                    Console.WriteLine("|          |");
+                    Console.SetCursorPosition(x3, 14);
+                    Console.WriteLine("|          |");
+                    Console.SetCursorPosition(x3, 15);
+                    Console.WriteLine("|__________|");
+                    Console.SetCursorPosition(x3, 16);
+                    Console.WriteLine("|__________|");
+                    Console.ResetColor();
+                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+
+                Console.SetCursorPosition(xcross + 2, ycross);
+                Console.WriteLine("   _");
+                Console.SetCursorPosition(xcross + 2, ycross + 1);
+                Console.WriteLine(" _| |_");
+                Console.SetCursorPosition(xcross + 2, ycross + 2);
+                Console.WriteLine("|_   _|");
+                Console.SetCursorPosition(xcross + 2, ycross + 3);
+                Console.WriteLine("  |_|");
+                Console.SetCursorPosition(xcross + 5, ycross + 4);
+
+
+                Console.ResetColor();
+
+                string move1 = Console.ReadLine();
+                if (move1 == "a")
+                {
+                    xcross -= 5;
+                }
+                if (move1 == "d")
+                {
+                    xcross += 5;
+                }
+                if (move1 == "w")
+                {
+                    ycross -= 5;
+                }
+                if (move1 == "s")
+                {
+                    ycross += 5;
+                }
+
+               
+                Console.Clear();
+                if (x3 < xcross + 9 && (x3 + 10) > xcross && y3 < ycross && y3 < ycross + 9)
+                {
+                    Console.WriteLine("\n\n\n\n \t\t\t\t " + "PRESS" + " X" + " TO SHOOT");
+                    string fire = Console.ReadLine();
+
+                    if (fire == "x" || fire == "X")
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "                YOU GOT HIT " + "  ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "            __ __ __ ___ . _                             ");
+                        Console.WriteLine("                           | |          |    \\             _     ");
+                        Console.WriteLine("                           | |          |      -- -- -- --| |            ");
+                        Console.WriteLine("                           | |          |      -- -- -- --|_|             ");
+                        Console.WriteLine("                           |_| __ __ ___|. _ /                            ");
+                        Console.ResetColor();
+                    }
+
+                    BULLETS -= 1;
+                    Console.WriteLine("                                                              Total BULLETS: " + BULLETS);
+                    if (BULLETS == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("\t\t\t\t PRESS R TO RELOAD");
+                        string R = Console.ReadLine();
+                        if (R == "R" || R == "r")
+                        {
+                            BULLETS += 6;
+                        }
+
+                    }
+                    totalscore += 1;
+                    Console.ReadLine();
+                    break;
+                }
+                
+            }
+            while (x2 < 68)
+            {
+                for (int i = 0; i < 68; i += 18)
+                {
+                    x2 += 1;
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+
+                    Console.SetCursorPosition(x2, 9);
+                    Console.WriteLine("    |=|  ");
+                    Console.SetCursorPosition(x2, 10);
+                    Console.WriteLine("    | |  ");
+                    Console.SetCursorPosition(x2, 11);
+                    Console.WriteLine("    | |  ");
+                    Console.SetCursorPosition(x2, 12);
+                    Console.WriteLine("   /   \\");
+                    Console.SetCursorPosition(x2, 13);
+                    Console.WriteLine("  .     .");
+                    Console.SetCursorPosition(x2, 14);
+                    Console.WriteLine("  |-----|");
+                    Console.SetCursorPosition(x2, 15);
+                    Console.WriteLine("  |     |");
+                    Console.SetCursorPosition(x2, 16);
+                    Console.WriteLine("  |-----|");
+                    Console.SetCursorPosition(x2, 17);
+                    Console.WriteLine("  |_____|");
+                    Console.SetCursorPosition(x2, 18);
+                    Console.ResetColor();
+                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+
+                Console.SetCursorPosition(xcross + 2, ycross);
+                Console.WriteLine("   _");
+                Console.SetCursorPosition(xcross + 2, ycross + 1);
+                Console.WriteLine(" _| |_");
+                Console.SetCursorPosition(xcross + 2, ycross + 2);
+                Console.WriteLine("|_   _|");
+                Console.SetCursorPosition(xcross + 2, ycross + 3);
+                Console.WriteLine("  |_|");
+                Console.SetCursorPosition(xcross + 5, ycross + 4);
+                Console.ResetColor();
+
+                string move1 = Console.ReadLine();
+                if (move1 == "a")
+                {
+                    xcross -= 5;
+                }
+                if (move1 == "d")
+                {
+                    xcross += 5;
+                }
+                if (move1 == "w")
+                {
+                    ycross -= 5;
+                }
+                if (move1 == "s")
+                {
+                    ycross += 5;
+                }
+
+                
+                Console.Clear();
+                if (x2 < xcross + 9 && (x2 + 10) > xcross && y2 < ycross && y2 < ycross + 9)
+                {
+                    Console.WriteLine("\n\n\n\n \t\t\t\t " + "PRESS" + " X" + " TO SHOOT");
+                    string fire = Console.ReadLine();
+
+                    if (fire == "x" || fire == "X")
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "                YOU GOT HIT " + "  ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "            __ __ __ ___ . _                             ");
+                        Console.WriteLine("                           | |          |    \\             _     ");
+                        Console.WriteLine("                           | |          |      -- -- -- --| |            ");
+                        Console.WriteLine("                           | |          |      -- -- -- --|_|             ");
+                        Console.WriteLine("                           |_| __ __ ___|. _ /                            ");
+                        Console.ResetColor();
+                    }
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    BULLETS -= 1;
+                    Console.WriteLine("                                                              Total BULLETS: " + BULLETS);
+                    if (BULLETS == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("\t\t\t\t PRESS R TO RELOAD");
+                        string R = Console.ReadLine();
+                        if (R == "R" || R == "r")
+                        {
+                            BULLETS += 6;
+                        }
+
+                    }
+                    Console.ResetColor();
+                    totalscore += 1;
+                    Console.ReadLine();
+                    break;
+                }
+                
+            }
+            while (x < 68)
+            {
+                for (int i = 0; i < 68; i += 18)
+                {
+                    x += 1;
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.SetCursorPosition(x, 10);
+                    Console.WriteLine("     __");
+                    Console.SetCursorPosition(x, 11);
+                    Console.WriteLine("    |==|");
+                    Console.SetCursorPosition(x, 12);
+                    Console.WriteLine("    |  |");
+                    Console.SetCursorPosition(x, 13);
+                    Console.WriteLine("    |  |");
+                    Console.SetCursorPosition(x, 14);
+                    Console.WriteLine("   /    \\");
+                    Console.SetCursorPosition(x, 15);
+                    Console.WriteLine("  /      \\");
+                    Console.SetCursorPosition(x, 16);
+                    Console.WriteLine(" .        .");
+                    Console.SetCursorPosition(x, 17);
+                    Console.WriteLine("|----------|");
+                    Console.SetCursorPosition(x, 18);
+                    Console.WriteLine("|          |");
+                    Console.SetCursorPosition(x, 19);
+                    Console.WriteLine("|          |");
+                    Console.SetCursorPosition(x, 20);
+                    Console.WriteLine("|__________|");
+                    Console.SetCursorPosition(x, 21);
+                    Console.WriteLine("|__________|");
+                    Console.ResetColor();
+                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+
+                Console.SetCursorPosition(xcross + 2, ycross);
+                Console.WriteLine("   _");
+                Console.SetCursorPosition(xcross + 2, ycross + 1);
+                Console.WriteLine(" _| |_");
+                Console.SetCursorPosition(xcross + 2, ycross + 2);
+                Console.WriteLine("|_   _|");
+                Console.SetCursorPosition(xcross + 2, ycross + 3);
+                Console.WriteLine("  |_|");
+                Console.SetCursorPosition(xcross + 5, ycross + 4);
+                Console.ResetColor();
+
+                string move = Console.ReadLine();
+                if (move == "a")
+                {
+                    xcross -= 5;
+                }
+                if (move == "d")
+                {
+                    xcross += 5;
+                }
+                if (move == "w")
+                {
+                    ycross -= 5;
+                }
+                if (move == "s")
+                {
+                    ycross += 5;
+                }
+
+                // Thread.Sleep(1000);
+                Console.Clear();
+                if (x < xcross + 9 && (x + 10) > xcross && y < ycross && y < ycross + 9)
+                {
+                    Console.WriteLine("\n\n\n\n \t\t\t\t " + "PRESS" + " X" + " TO SHOOT");
+                    string fire = Console.ReadLine();
+
+                    if (fire == "x" || fire == "X")
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "                YOU GOT HIT " + "  ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "            __ __ __ ___ . _                             ");
+                        Console.WriteLine("                           | |          |    \\             _     ");
+                        Console.WriteLine("                           | |          |      -- -- -- --| |            ");
+                        Console.WriteLine("                           | |          |      -- -- -- --|_|             ");
+                        Console.WriteLine("                           |_| __ __ ___|. _ /                            ");
+                        Console.ResetColor();
+                    }
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    BULLETS -= 1;
+                    Console.WriteLine("                                                              Total BULLETS: " + BULLETS);
+                    if (BULLETS == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("\t\t\t\t PRESS R TO RELOAD");
+                        string R = Console.ReadLine();
+                        if (R == "R" || R == "r")
+                        {
+                            BULLETS += 6;
+                        }
+
+                    }
+                    Console.ResetColor();
+                    totalscore += 1;
+                    Console.ReadLine();
+                    break;
+                }
+            }
+            while (x6 < 68)
+            {
+                for (int i = 0; i < 68; i += 18)
+                {
+                    x6 += 1;
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.SetCursorPosition(x6, 5);
+                    Console.WriteLine("      |=|");
+                    Console.SetCursorPosition(x6, 6);
+                    Console.WriteLine("      | |");
+                    Console.SetCursorPosition(x6, 7);
+                    Console.WriteLine("      | |");
+                    Console.SetCursorPosition(x6, 8);
+                    Console.WriteLine("     /   \\");
+                    Console.SetCursorPosition(x6, 9);
+                    Console.WriteLine("    .     .");
+                    Console.SetCursorPosition(x6, 10);
+                    Console.WriteLine("    |-----|");
+                    Console.SetCursorPosition(x6, 11);
+                    Console.WriteLine("    |     |");
+                    Console.SetCursorPosition(x6, 12);
+                    Console.WriteLine("    |-----|");
+                    Console.SetCursorPosition(x6, 13);
+                    Console.WriteLine("    |_____|");
+                    Console.SetCursorPosition(x6, 14);
+                    Console.ResetColor();
+                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+
+                Console.SetCursorPosition(xcross + 2, ycross);
+                Console.WriteLine("   _");
+                Console.SetCursorPosition(xcross + 2, ycross + 1);
+                Console.WriteLine(" _| |_");
+                Console.SetCursorPosition(xcross + 2, ycross + 2);
+                Console.WriteLine("|_   _|");
+                Console.SetCursorPosition(xcross + 2, ycross + 3);
+                Console.WriteLine("  |_|");
+                Console.SetCursorPosition(xcross + 5, ycross + 4);
+                Console.ResetColor();
+
+                string move = Console.ReadLine();
+                if (move == "a")
+                {
+                    xcross -= 5;
+                }
+                if (move == "d")
+                {
+                    xcross += 5;
+                }
+                if (move == "w")
+                {
+                    ycross -= 5;
+                }
+                if (move == "s")
+                {
+                    ycross += 5;
+                }
+
+                
+                Console.Clear();
+                if (x6 < xcross + 9 && (x6 + 10) > xcross && y6 < ycross && y6 < ycross + 9)
+                {
+                    Console.WriteLine("\n\n\n\n \t\t\t\t " + "PRESS" + " X" + " TO SHOOT");
+                    string fire = Console.ReadLine();
+
+                    if (fire == "x" || fire == "X")
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "                YOU GOT HIT " + "  ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "            __ __ __ ___ . _                             ");
+                        Console.WriteLine("                           | |          |    \\             _     ");
+                        Console.WriteLine("                           | |          |      -- -- -- --| |            ");
+                        Console.WriteLine("                           | |          |      -- -- -- --|_|             ");
+                        Console.WriteLine("                           |_| __ __ ___|. _ /                            ");
+                        Console.ResetColor();
+                    }
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    BULLETS -= 1;
+                    Console.WriteLine("                                                              Total BULLETS: " + BULLETS);
+                    if (BULLETS == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("\t\t\t\t PRESS R TO RELOAD");
+                        string R = Console.ReadLine();
+                        if (R == "R" || R == "r")
+                        {
+                            BULLETS += 6;
+                        }
+
+                    }
+                    Console.ResetColor();
+                    totalscore += 1;
+                    Console.ReadLine();
+                    break;
+                }
+            }
+            while (x1 < 68)
+            {
+                for (int i = 0; i < 68; i += 18)
+                {
+                    x1 += 1;
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.SetCursorPosition(x1,6);
+                    Console.WriteLine("     __");
+                    Console.SetCursorPosition(x1, 7);
+                    Console.WriteLine("    |==|");
+                    Console.SetCursorPosition(x1, 8);
+                    Console.WriteLine("    |  |");
+                    Console.SetCursorPosition(x1, 9);
+                    Console.WriteLine("    |  |");
+                    Console.SetCursorPosition(x1, 10);
+                    Console.WriteLine("   /    \\");
+                    Console.SetCursorPosition(x1, 11);
+                    Console.WriteLine("  /      \\");
+                    Console.SetCursorPosition(x1, 12);
+                    Console.WriteLine(" .        .");
+                    Console.SetCursorPosition(x1, 13);
+                    Console.WriteLine("|----------|");
+                    Console.SetCursorPosition(x1, 14);
+                    Console.WriteLine("|          |");
+                    Console.SetCursorPosition(x1, 15);
+                    Console.WriteLine("|          |");
+                    Console.SetCursorPosition(x1, 16);
+                    Console.WriteLine("|__________|");
+                    Console.SetCursorPosition(x1, 17);
+                    Console.WriteLine("|__________|");
+                    Console.ResetColor();
+                }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.SetCursorPosition(xcross + 2, ycross);
+                Console.WriteLine("   _");
+                Console.SetCursorPosition(xcross + 2, ycross + 1);
+                Console.WriteLine(" _| |_");
+                Console.SetCursorPosition(xcross + 2, ycross + 2);
+                Console.WriteLine("|_   _|");
+                Console.SetCursorPosition(xcross + 2, ycross + 3);
+                Console.WriteLine("  |_|");
+                Console.SetCursorPosition(xcross + 5, ycross + 4);
+
+
+                Console.ResetColor();
+
+                string move1 = Console.ReadLine();
+                if (move1 == "a")
+                {
+                    xcross -= 5;
+                }
+                if (move1 == "d")
+                {
+                    xcross += 5;
+                }
+                if (move1 == "w")
+                {
+                    ycross -= 5;
+                }
+                if (move1 == "s")
+                {
+                    ycross += 5;
+                }
+
+                
+                Console.Clear();
+                if (x1 < xcross + 9 && (x1 + 10) > xcross && y1 < ycross && y1 < ycross + 9)
+                {
+                    Console.WriteLine("\n\n\n\n \t\t\t\t " + "PRESS" + " X" + " TO SHOOT");
+                    string fire = Console.ReadLine();
+
+                    if (fire == "x" || fire == "X")
+                    {
+                        Console.Clear();
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "                YOU GOT HIT " + "  ");
+                        Console.ResetColor();
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.WriteLine("\n" + "\n" + "\n" + "\n" + "\n" + "\n" + "\t" + "\t" + "            __ __ __ ___ . _                             ");
+                        Console.WriteLine("                           | |          |    \\             _     ");
+                        Console.WriteLine("                           | |          |      -- -- -- --| |            ");
+                        Console.WriteLine("                           | |          |      -- -- -- --|_|             ");
+                        Console.WriteLine("                           |_| __ __ ___|. _ /                            ");
+                        Console.ResetColor();
+                    }
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    totalscore += 1;
+                    BULLETS -= 1;
+                    Console.WriteLine("                                                              Total BULLETS: " + BULLETS);
+                    Console.WriteLine();
+                    Console.ResetColor();
+                    Console.ReadLine();
+                    int HighScore = totalscore;
+                    int[] arr = new int[4];
+                    f1(x1, y1, xcross, ycross, totalscore,HighScore,arr);
+                    Console.ReadLine();
+                    break;
+                    
+                    if (BULLETS == 0)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                        Console.WriteLine("\t\t\t\t PRESS R TO RELOAD");
+                        string R = Convert.ToString(Console.ReadLine());
+                        if (R == "R" || R == "r")
+                        {
+                            BULLETS += 6;
+                        }
+                        
+                    }
+
+                }
+                Console.WriteLine();
+               
+            }
+           
+        }
+         
+     static void f1(int x1,int y1,int xcross,int ycross,int totalscore,int HighScore, int[] arr)
+        {
+            if (x1 < xcross+9 && y1 < ycross+9)
+            {
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Clear();
+                Console.WriteLine("\n" + "\t" + "\t" + "\t" + "  YOUR TOTALSCORE IS  " + totalscore);
+                Console.ResetColor();
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("\n");
+                Console.WriteLine("        =================================================================");
+                Console.WriteLine("\n");
+                Console.WriteLine("                          _   _   _   _     _   _   _  ");
+                Console.WriteLine("                         / \\ / \\ / \\ / \\   / \\ / \\ / \\ ");
+                Console.WriteLine("                        ( G | A | M | E ) ( E | N | D )");
+                Console.WriteLine("                         \\_/ \\_/ \\_/ \\_/   \\_/ \\_/ \\_/ ");
+                Console.WriteLine("\n");
+                Console.WriteLine("        =================================================================");
+                Console.ForegroundColor = ConsoleColor.Magenta;
+                Console.WriteLine("\n" + "\n" + "\n" + "\t" + "\t" + "\t" + "CODER NAME == SAMEER FIAZ ");
+                Console.ResetColor();
+                Console.WriteLine();
+                Console.ResetColor();
+                Console.WriteLine("\n" + "\n"  + "\t" + "\t" + "\t" +"HighScore is: " + "\t\t"+ HighScore);
+         
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    arr[i] = HighScore;
+
+                }
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    Console.Write("\n\n\t" + "\t" + "\t" + "HighScore is : " + "\t" + "\t" + +arr[i]);
+                   
+                }
+            }
+
+ }      
+    }
+}
+
+
